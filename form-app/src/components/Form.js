@@ -4,12 +4,14 @@ class Form extends React.Component {
 	state = {
 		firstName: "",
     lastName: "",
-    gender: "",
-		agree: false,
+    gender: "Select Your Gender",
+    agree: false,
+    app: false,
 	};
 
 	handleFirstNameChange = (e) => {
-		this.setState({ firstName: e.target.value });
+    this.setState({ firstName: e.target.value });
+    
 	};
 
 	handleLastNameChange = (e) => {
@@ -25,23 +27,27 @@ class Form extends React.Component {
   
 
   handleChange = (e) => {
-    debugger
+
      this.setState({gender: e.target.value})
   };
 
+  handleApp = (e) => {
+    this.setState(e.target.value)
+  }
 
 	handleSubmit = (e) => {
 		e.preventDefault();
 		let { firstName, lastName } = this.state;
 		console.log({
 			firstName: firstName,
-			lastName: lastName,
+      lastName: lastName,
+      
 		});
   };
   
 
 	render() {
-		let { firstName, lastName, agree,gender } = this.state;
+		let { firstName, lastName, agree,gender, app } = this.state;
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<label>
@@ -68,13 +74,35 @@ class Form extends React.Component {
           Gender:
           <select value={gender}
             onChange={this.handleChange}>
-						<option >Select Your Gender</option>
+						<option disabled>Select Your Gender</option>
             
 						<option value="male">Male</option>
 						<option value="female">Female</option>
 						<option value="something else">Something Else</option>
 						<option value="decline to answer">Decline to Answer</option>
 					</select>
+        </label>
+
+        <h4>Select Social Media Apps</h4>
+        <label>
+          Twitter: 
+          <input type="radio" value="Twitter" name="app"
+            checked={app === "true"} onChange={this.handleApp} />
+        </label>
+        <label>
+          Linkedin: 
+          <input type="radio" value="Linkedin" name="app"
+          checked={app === "true"} onChange={this.handleApp}/>
+        </label>
+        <label>
+          Instagram: 
+          <input type="radio" value="Instagram" name="app"
+          checked={app === "true"} onChange={this.handleApp}/>
+        </label>
+        <label>
+          Facebook: 
+          <input type="radio" value="Facebook" name="app"
+          checked={app === "true"} onChange={this.handleApp}/>
         </label>
         
 				<label>
